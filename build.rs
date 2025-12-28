@@ -65,7 +65,7 @@ mod asm {
         let os = env::var("CARGO_CFG_TARGET_OS").unwrap();
         let vendor = env::var("CARGO_CFG_TARGET_VENDOR").unwrap();
         let pointer_width = env::var("CARGO_CFG_TARGET_POINTER_WIDTH").unwrap();
-        let features = env::var("CARGO_CFG_TARGET_FEATURE").unwrap();
+        let features = env::var("CARGO_CFG_TARGET_FEATURE").unwrap_or_else(|_| String::new());
 
         // Nothing to do on unknown architectures
         let Ok(arch) = arch.parse::<Arch>() else {
